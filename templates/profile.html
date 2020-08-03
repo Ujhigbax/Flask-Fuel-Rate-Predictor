@@ -1,0 +1,79 @@
+{%extends 'base.html'%}
+{%block header%}
+    | <a href="/logout">LOGOUT</a> 
+{%endblock%}
+{%block content%}
+<h1>Profile</h1>
+<br>
+<form method='POST' action="">
+    {{form.csrf_token}}
+    <p>
+        {{form.fullname.label}}
+        {{form.fullname(placeholder='fullname')}}
+        <span>
+            {%if form.fullname.errors%}
+                {%for error in form.fullname.errors%}
+                    {{error}}
+                {%endfor%}
+            {%endif%}
+        </span>
+    </p>
+    <p>
+        {{form.address1.label}}
+        {{form.address1(placeholder='address1')}}
+        <span>
+            {%if form.address1.errors%}
+                {%for error in form.address1.errors%}
+                    {{error}}
+                {%endfor%}
+            {%endif%}
+        </span>
+    </p>
+    <p>
+        <label>Enter Address 2: </label>
+        {{form.address2(placeholder='address2')}}
+        <span>
+            {%if form.address2.errors%}
+                {%for error in form.address2.errors%}
+                    {{error}}
+                {%endfor%}
+            {%endif%}
+        </span>
+    </p>
+    <p>
+        <label>Enter City: </label>
+        {{form.city(placeholder='city')}}
+        <span>
+            {%if form.city.errors%}
+                {%for error in form.city.errors%}
+                    {{error}}
+                {%endfor%}
+            {%endif%}
+        </span>
+    </p>
+    <p>
+        <label>Select a state: </label>
+        {{form.state()}}
+        <span>
+            {%if form.state.errors%}
+                {%for error in form.state.errors%}
+                    {{error}}
+                {%endfor%}
+            {%endif%}
+        </span>
+    </p>
+    <p>
+        <label>Enter Zipcode: </label>
+        {{form.zipcode(placeholder='zipcode')}}
+        <span>
+            {%if form.zipcode.errors%}
+                {%for error in form.zipcode.errors%}
+                    {{error}}
+                {%endfor%}
+            {%endif%}
+        </span>
+    </p>
+    <button type='submit'>Update Profile</button>
+
+</form>
+{%endblock%}

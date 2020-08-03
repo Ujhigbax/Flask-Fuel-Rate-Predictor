@@ -1,0 +1,58 @@
+{%extends 'base.html'%}
+{%block header%}
+    | <a href="/login">Click Here to Login</a> 
+{%endblock%}
+{%block content%}
+
+<h1>Register</h1>
+<br>
+<form method='POST' action="">
+    {{form.csrf_token}}
+    <p>
+        {{form.username.label}}
+        {{form.username(placeholder='username')}}
+        <span>
+            {%if form.username.errors%}
+                {%for error in form.username.errors%}
+                    {{error}}
+                {%endfor%}
+            {%endif%}
+        </span>
+    </p>
+    <p>
+        {{form.email.label}}
+        {{form.email(placeholder='email')}}
+        <span>
+            {%if form.email.errors%}
+                {%for error in form.email.errors%}
+                    {{error}}
+                {%endfor%}
+            {%endif%}
+        </span>
+    </p>
+    <p>
+        {{form.password.label}}
+        {{form.password(placeholder='password')}}
+        <span>
+            {%if form.password.errors%}
+                {%for error in form.password.errors%}
+                    {{error}}
+                {%endfor%}
+            {%endif%}
+        </span>
+    </p>
+    <p>
+        {{form.confirm_password.label}}
+        {{form.confirm_password(placeholder='confirm password')}}
+        <span>
+            {%if form.confirm_password.errors%}
+                {%for error in form.confirm_password.errors%}
+                    {{error}}
+                {%endfor%}
+            {%endif%}
+        </span>
+    </p>
+    <button type="submit">Submit</button>
+</form>
+
+{%endblock%}

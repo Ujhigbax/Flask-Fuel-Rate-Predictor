@@ -1,0 +1,34 @@
+{%extends 'base.html'%}
+{%block header%}
+    | <a href="/logout">LOGOUT</a>
+{%endblock%}
+{%block content%}
+    <style>
+        table{
+            width: 100%;
+        }
+        tr{
+            table-layout: fixed;
+        }
+    </style>
+    <h1>History</h1>
+    <table>
+        <tr>
+            <th>Gallons Amount</th>
+            <th>Delivery Address</th>
+            <th>Delivery Date</th>
+            <th>Suggested Price/Gallon (USD)</th>
+            <th>Total Price Due (USD)</th>
+        </tr>
+        {%for past_quotes in past_quotes%}
+            <tr>
+                <td>{{past_quotes.gallons_amount}}</td>
+                <td>{{past_quotes.delivery_address}}</td>
+                <td>{{past_quotes.delivery_date}}</td>
+                <td>{{"%.2f"|format(past_quotes.price_per_gallon)}}</td>
+                <td>{{"%.2f"|format(past_quotes.total_price)}}</td>
+                <br>
+            </tr>
+            {%endfor%}
+    </table>
+{%endblock%}

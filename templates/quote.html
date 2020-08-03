@@ -1,0 +1,54 @@
+{%extends 'base.html'%}
+{%block header%}
+    | <a href="/logout">LOGOUT</a> 
+{%endblock%}
+{%block content%}
+<h1>Quote</h1>
+<br>
+<form method='POST' action="">
+    {{form.csrf_token}}
+    <p>
+        {{form.gallons.label}}
+        {{form.gallons(placeholder='Gallons Amount')}}
+        <span>
+            {%if form.gallons.errors%}
+                {%for error in form.gallons.errors%}
+                    {{error}}
+                {%endfor%}
+            {%endif%}
+        </span>
+    </p>
+    <p>
+        {{form.delivery_address.label}}
+        {{form.delivery_address.data}}
+    </p>
+    <p>
+        {{form.delivery_date.label}}
+        {{form.delivery_date(placeholder='delivery date')}}
+        <span>
+            {%if form.delivery_date.errors%}
+                {%for error in form.delivery_date.errors%}
+                    {{error}}
+                {%endfor%}
+            {%endif%}
+        </span>
+    </p>
+    <p>
+        {{form.suggested_price_per_gallons.label}}
+        {{form.suggested_price_per_gallons.data}}
+    </p>
+    <p>
+        {{form.total_price.label}}
+        {{form.total_price.data}}
+    </p>
+    
+    <input type="submit" name='submit' value='Get Quote Pricing'>
+    <br><br>
+    {%if form.total_price.data == 'Enter Gallons Amount to Calculate'%}
+        <input type="submit" name='submit' value='Submit Quote Order' disabled='disabled'>
+    {%endif%}
+    {%if form.total_price.data != 'Enter Gallons Amount to Calculate'%}
+        <input type="submit" name='submit' value='Submit Quote Order'>
+    {%endif%}
+</form>
+{%endblock%}
